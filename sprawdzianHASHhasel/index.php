@@ -1,6 +1,11 @@
 <?php
 
 $c = mysqli_connect('localhost', 'root', '', 'spr');
+session_start();
+
+    // GENERATOR HASOWANYCH HASEL + ROZNE SPOSOBY HASOWANIA
+    // GENERATOR HASOWANYCH HASEL + ROZNE SPOSOBY HASOWANIA
+    // GENERATOR HASOWANYCH HASEL + ROZNE SPOSOBY HASOWANIA
 
     if(isset($_POST['haslogen'])) {
         $hash = password_hash($_POST['haslogen'], PASSWORD_DEFAULT);
@@ -10,6 +15,10 @@ $c = mysqli_connect('localhost', 'root', '', 'spr');
         echo 'md5:'.md5($_POST['haslo']);
 
     }
+
+    // SPRAWDZANIE HASHY
+    // SPRAWDZANIE HASHY
+    // SPRAWDZANIE HASHY
 
     if(isset($_POST['sprawdzhaslo']) and isset($_POST['sprawdzhashhaslo'])) {
         if($_POST['typ'] == 'passworddefault') {
@@ -32,6 +41,10 @@ $c = mysqli_connect('localhost', 'root', '', 'spr');
 
         }
     }
+
+    // REJESTRACJA Z OBSLUGA BLEDOW (chyba o to chodzi) ORAZ Z DODAWANIEM UZYTKOWNIKA DO BAZY
+    // REJESTRACJA Z OBSLUGA BLEDOW (chyba o to chodzi) ORAZ Z DODAWANIEM UZYTKOWNIKA DO BAZY
+    // REJESTRACJA Z OBSLUGA BLEDOW (chyba o to chodzi) ORAZ Z DODAWANIEM UZYTKOWNIKA DO BAZY
 
     if(isset($_POST['nick'])) {
         $haslo1 = $_POST['haslo1'];
@@ -74,10 +87,14 @@ $c = mysqli_connect('localhost', 'root', '', 'spr');
 
     }
 
+    // LOGOWANIE DO "GRY"
+    // LOGOWANIE DO "GRY"
+    // LOGOWANIE DO "GRY"
+
 if(isset($_POST['loginL']) and isset($_POST['passL'])) {
     echo 'test';
-    $login = htmlentities($_POST['loginL'], ENT_QUOTES, 'UTF-8');
-    $pass = htmlentities($_POST['passL'], ENT_QUOTES, 'UTF-8');
+    $login = htmlentities($_POST['loginL'], ENT_QUOTES, 'UTF-8'); // ZABEZPIECZENIE ANTY-SQL INJECTION
+    $pass = htmlentities($_POST['passL'], ENT_QUOTES, 'UTF-8'); // ZABEZPIECZENIE ANTY-SQL INJECTION
 
     $query = mysqli_query($c, "SELECT * FROM user WHERE `nick` LIKE '$login' ");
 
@@ -87,6 +104,7 @@ if(isset($_POST['loginL']) and isset($_POST['passL'])) {
         print_r($row);
 
         if(password_verify($pass, $row[2])) {
+            $_SESSION['nick'] = $row[1];
             header('location: gra.php');
         } else {
             echo "niepoprawny login lub haslo";
