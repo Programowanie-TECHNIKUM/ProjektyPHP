@@ -113,6 +113,18 @@ if(isset($_POST['loginL']) and isset($_POST['passL'])) {
     }
 }
 
+// WERYFIKACJA MAILA
+// WERYFIKACJA MAILA
+// WERYFIKACJA MAILA
+
+if(isset($_POST['sprawdzmail'])) {
+    if(filter_var($_POST['sprawdzmail'], FILTER_VALIDATE_EMAIL)) {
+        echo "mail jest prawidlowy";
+    } else {
+        echo "mail jest nieprawidlowy";
+    }
+}
+
 
 
 ?>
@@ -148,6 +160,12 @@ if(isset($_POST['loginL']) and isset($_POST['passL'])) {
         <form method = "post">
             <input type = "text" name = "loginL" placeholder="login">
             <input type = "password" name = "passL" placeholder="haslo">
+            <input type = "submit">
+        </form>
+        <br>
+        <h1>Walidacja maila</h1>
+        <form method = "post">
+            <input type = "text" name = "sprawdzmail">
             <input type = "submit">
         </form>
     </body>
