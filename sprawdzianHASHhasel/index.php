@@ -92,14 +92,13 @@ session_start();
     // LOGOWANIE DO "GRY"
 
 if(isset($_POST['loginL']) and isset($_POST['passL'])) {
-    echo 'test';
     $login = htmlentities($_POST['loginL'], ENT_QUOTES, 'UTF-8'); // ZABEZPIECZENIE ANTY-SQL INJECTION
     $pass = htmlentities($_POST['passL'], ENT_QUOTES, 'UTF-8'); // ZABEZPIECZENIE ANTY-SQL INJECTION
 
     $query = mysqli_query($c, "SELECT * FROM user WHERE `nick` LIKE '$login' ");
 
 
-    if(mysqli_num_rows($query) <> 0) {
+    if(mysqli_num_rows($query) <> 0) { // sprwadzanie czy jest wiecej rekordow niz 0
         $row = mysqli_fetch_array($query);
         print_r($row);
 
